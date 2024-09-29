@@ -7,11 +7,11 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 - `user_address::Stirng`: Address to read the user file at.
 """
 function read_user_file_location(endpoint_dict)
+    conn = LibPQ.Connection(db_conn())
+    kws = Vector{String}(DataFrame(execute(conn, "Select keyword from news_kws")).keyword)
 
-    kws = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword)
-
-    concepts = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select concept from news_concepts")).concept)
-
+    concepts = Vector{String}(DataFrame(execute(conn, "Select concept from news_concepts")).concept)
+    close(conn)
     user = Dict("id"=>999, 
             "keywords"=>Dict(
                 "keywords"=> kws, 
@@ -32,14 +32,16 @@ NOTE: This function will likely change as we develop infrastructure for Salud.
 - `user_address::Stirng`: Address to read the user file at.
 """
 function read_user_file_sources(endpoint_dict)
-    
-    kws = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select keyword from news_kws")).keyword)
+    conn = LibPQ.Connection(db_conn())
+    kws = Vector{String}(DataFrame(execute(conn, "Select keyword from news_kws")).keyword)
 
-    concepts = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select concept from news_concepts")).concept)
+    concepts = Vector{String}(DataFrame(execute(conn, "Select concept from news_concepts")).concept)
 
-    sources = Vector{String}(DataFrame(execute(LibPQ.Connection(db_conn()), "Select source from news_sources")).source)
+    sources = Vector{String}(DataFrame(execute(conn, "Select source from news_sources")).source)
 
     sources = replace.(replace.(sources, "http://"=>""), "/"=>"")
+
+    close(conn)
 
     user = Dict("id"=>999, 
             "keywords"=>Dict(

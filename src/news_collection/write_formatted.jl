@@ -63,6 +63,7 @@ function write_formatted(formatted, endpoint_dict)
         );
 
         execute(conn, "COMMIT;")
+        close(conn)
     end
 end
 

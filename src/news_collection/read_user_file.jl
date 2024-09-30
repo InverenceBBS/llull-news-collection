@@ -17,7 +17,7 @@ function read_user_file_location(endpoint_dict)
                 "keywords"=> kws, 
                 "locations"=>endpoint_dict["location"], 
                 "languages"=>nothing,
-                "concepts"=>concepts,
+                "concepts"=>nothing,#concepts,
                 "sources"=>nothing
             ))
 end
@@ -48,7 +48,7 @@ function read_user_file_sources(endpoint_dict)
                 "keywords"=> kws, 
                 "locations"=>nothing, 
                 "languages"=>nothing,
-                "concepts"=>concepts,
+                "concepts"=>nothing,#concepts,
                 "sources"=>sources
             ))
 end

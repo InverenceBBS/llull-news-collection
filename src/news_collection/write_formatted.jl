@@ -11,6 +11,7 @@ function write_formatted(formatted, endpoint_dict)
 
         LibPQ.load!(
             (
+                originalArticleUri = formatted.originalArticleUri,
                 uri = formatted.uri,
                 url = formatted.url ,
                 time = formatted.time,
@@ -32,11 +33,14 @@ function write_formatted(formatted, endpoint_dict)
                 title = formatted.title,  
                 dateTime = formatted.dateTime,
                 authors = formatted.authors,
-                categories = formatted.concepts 
+                categories = formatted.concepts,
+                originalarticle = formatted.originalArticle,
+                duplicatelist = [replace(replace(string(dl), "["=>"{"), "]"=>"}") for dl in formatted.duplicateList]
             ),
             conn,
-            "INSERT INTO $(endpoint_dict["news_table"]) (uri, url, time, dataType, eventUri, shares, location, wgt, isDuplicate, sim, body, image, sentiment, date, relevance, dateTimePub, source, lang, title, dateTime, authors, categories ) VALUES (\$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$16, \$17, \$18, \$19, \$20, \$21, \$22)
+            "INSERT INTO $(endpoint_dict["news_table"]) (originalArticleUri, uri, url, time, dataType, eventUri, shares, location, wgt, isDuplicate, sim, body, image, sentiment, date, relevance, dateTimePub, source, lang, title, dateTime, authors, categories, originalarticle, duplicateList ) VALUES (\$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$16, \$17, \$18, \$19, \$20, \$21, \$22, \$23, \$24, \$25)
             ON CONFLICT (uri) DO UPDATE SET
+                originalArticleUri = EXCLUDED.originalArticleUri,
                 wgt = EXCLUDED.wgt,
                 uri = EXCLUDED.uri,
                 url = EXCLUDED.url ,
@@ -58,7 +62,9 @@ function write_formatted(formatted, endpoint_dict)
                 title = EXCLUDED.title,  
                 dateTime = EXCLUDED.dateTime,
                 authors = EXCLUDED.authors,
-                categories = EXCLUDED.categories 
+                categories = EXCLUDED.categories,
+                originalArticle = EXCLUDED.originalArticle,
+                duplicateList = EXCLUDED.duplicateList 
             ;"
         );
 

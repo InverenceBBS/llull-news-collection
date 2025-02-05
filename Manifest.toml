@@ -2,7 +2,7 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "dd207deffc791cdf9ba95d0bc89fa454746f1984"
+project_hash = "b5aeca0a54e9e9403d74df472910645ddd87dea1"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -151,9 +151,9 @@ version = "1.10.0"
 
 [[deps.IOM_newsAPI_query]]
 deps = ["Dates", "HTTP", "JSON"]
-git-tree-sha1 = "2b37640c9bb8b285cd28fe2b438d5192244c041e"
+git-tree-sha1 = "80b14ac364b79920da269b6c4638900b9ddbef12"
 uuid = "2f70e6e1-4b7e-452a-8221-497046ae2690"
-version = "1.0.10-DEV"
+version = "1.0.11-DEV"
 
 [[deps.Infinity]]
 deps = ["Dates", "Random", "Requires"]
@@ -360,9 +360,9 @@ uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
 version = "3.0.12+0"
 
 [[deps.OrderedCollections]]
-git-tree-sha1 = "dfdf5519f235516220579f949664f1bf44e741c5"
+git-tree-sha1 = "cc4054e898b852042d7b503313f7ad03de99c3dd"
 uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
-version = "1.6.3"
+version = "1.8.0"
 
 [[deps.Oxygen]]
 deps = ["Dates", "HTTP", "JSON3", "MIMEs", "RelocatableFolders", "Sockets"]

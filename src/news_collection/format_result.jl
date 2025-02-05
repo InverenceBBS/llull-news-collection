@@ -10,5 +10,6 @@ function format_result(articles)
     dfs = dict_to_df.(articles)
 
     big_df = vcat(dfs...)
+    big_df[:, "originalArticleUri"]=[a["originalArticle"]=="null" ? a["uri"] : "\""*JSON.parse(a["originalArticle"])["uri"]*"\"" for a in eachrow(big_df)]
     return big_df
 end

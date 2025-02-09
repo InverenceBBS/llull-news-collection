@@ -28,6 +28,9 @@ The data structure in the `news` table is as follows:
 | dateTime | DateTime | datetime when we found and serialized the article in UTC timezone. Each next article added to Event Registry will have a higher value | 2013-12-18T11:40:00Z |
 | authors | JSON | list of article's authors | [{"uri": "john_doe@techcrunch.com", "name":"John Doe", "type":"author", "isAgency": false},...] |
 | categories | JSON | All categories identified in the article. See the category data model [here](https://www.newsapi.ai/documentation?tab=data_models) | [{"label":{"eng":"Cardiology"},"uri":"http://en.wikipedia.org/wiki/Cardiology","score":5,"type":"wiki"},{"label":{"eng":"Hospital General Universitario Gregorio Marañón"},"uri":"http://en.wikipedia.org/wiki/Hospital_General_Universitario_Gregorio_Marañón","score":4,"type":"wiki"}] |
+| originalArticle | JSON | The full entry of the original article (if this article is a duplicate), otherwise NULL | {"sim": 0.8666666746139526, "uri": "8531281299", "url": "https://www.europapress.es/madridnoticia-programa-prevecolon-comunidad-cierra-2024-record-356997-pruebas-deteccion-499-casos-cancer-20250204074732.html", "body": "Puede consultar la ...", "date": "2025-02-04", "lang": "spa", ...} |
+| duplicateList | List | List of all articles that are duplicates of this article | ["8531312841", "8531312843"]|
+| originalArticleUri | String | The URI of the original article this one is based on. If this is the original, originalArticleUri=uri | "8531312841" |
 <!-- 
 # Functioning
 The endpoint for getting news articles for a particular keyword, date, language, location, ... is live  here `{url_webserver}/news/query`. The `{url_webserver}` can be read on the top right corner of the github repo (is not stable yet, as we might want a dedicated domain).

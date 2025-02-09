@@ -65,7 +65,7 @@ function write_formatted(formatted, endpoint_dict)
                 categories = EXCLUDED.categories,
                 originalArticle = EXCLUDED.originalArticle,
                 duplicateList = EXCLUDED.duplicateList 
-            ;"
+            ;" # ON CONFLICT overwrite the old value with the new. This will give use updated values for columns such as 'shares'
         );
 
         execute(conn, "COMMIT;")

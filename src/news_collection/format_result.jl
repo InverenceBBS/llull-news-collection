@@ -10,6 +10,8 @@ function format_result(articles)
     dfs = dict_to_df.(articles)
 
     big_df = vcat(dfs...)
+    # If the originalArticle col is null for an article (ie it is the original article) set the originalArticleUri column to be the article URI, otherwise originalArticleUri equals the originalArticle URI. 
+    # Note there are escaped quotation marks added to the originalArticle URI, this is just a formatting quirk that has been carried forward from older versions of the code.
     big_df[:, "originalArticleUri"]=[a["originalArticle"]=="null" ? a["uri"] : "\""*JSON.parse(a["originalArticle"])["uri"]*"\"" for a in eachrow(big_df)]
     return big_df
 end

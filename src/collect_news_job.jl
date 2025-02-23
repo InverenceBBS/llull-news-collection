@@ -1,5 +1,5 @@
 """
-Collects and write dayly news articles to `storage_address`, based on the user file at `user_address`
+Collects and write daily news articles to `storage_address`, based on the user file at `user_address`
 
 # Arguments
 - `user_address::String`: Address for the user file.

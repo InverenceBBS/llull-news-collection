@@ -11,6 +11,10 @@ using JSON
 using CSV
 using TimeZones
 
+"""
+This file is no longer being used. The functionality has bee superceded by `Server.jl`
+"""
+
 
 #  Variable  Type  Description  Example 
 #  --------  ----  ------------------  --- 
